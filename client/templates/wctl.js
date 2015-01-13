@@ -18,28 +18,29 @@
         Meteor.call('insert', status);
     }
 
-    function timeoutChange(template, seconds, targetStatus, callback) {
-        template.timeout = setTimeout(function() {
+    function timeoutChange(seconds, targetStatus, callback) {
+        Session.set('timeout', setTimeout(function() {
             insert(targetStatus);
             if(callback) {
                 callback();
             }
-        }, 1000 * seconds);
+        }, 1000 * seconds));
     }
 
     function clearChangeTimeout(template) {
-        if(template.timeout) {
-            clearTimeout(template.timeout);
+        var timeout = Session.get('timeout');
+        if(timeout) {
+            clearTimeout(timeout);
         }
     }
 
-    function updateStatus(template) {
+    function updateStatus() {
         var status = getStatus();
 
         if(status === Status.GREEN) {
             insert(Status.YELLOW);
-            timeoutChange(template, 10, Status.RED, function() {
-                timeoutChange(template, 10, Status.GREEN);
+            timeoutChange(10, Status.RED, function() {
+                timeoutChange(10, Status.GREEN);
             });
         }
     }
@@ -61,7 +62,7 @@
 
     Template.wctl.events({
         'click #wrapper': function() {
-            updateStatus(Template.instance());
+            updateStatus();
         }
     });
 })();
