@@ -4,45 +4,10 @@
 
 
 (function() {
-    Meteor.subscribe('status', function() {
-        if(!Status.find().count()) {
-            insert(Status.GREEN);
-        }
-    });
+    Meteor.subscribe('status');
 
     function getStatus() {
         return Status.findOne({}, {sort: {timestamp: -1}}).status;
-    }
-
-    function insert(status) {
-        Meteor.call('insert', status);
-    }
-
-    function timeoutChange(seconds, targetStatus, callback) {
-        Session.set('timeout', setTimeout(function() {
-            insert(targetStatus);
-            if(callback) {
-                callback();
-            }
-        }, 1000 * seconds));
-    }
-
-    function clearChangeTimeout(template) {
-        var timeout = Session.get('timeout');
-        if(timeout) {
-            clearTimeout(timeout);
-        }
-    }
-
-    function updateStatus() {
-        var status = getStatus();
-
-        if(status === Status.GREEN) {
-            insert(Status.YELLOW);
-            timeoutChange(10, Status.RED, function() {
-                timeoutChange(10, Status.GREEN);
-            });
-        }
     }
 
     Template.wctl.helpers({
@@ -62,7 +27,11 @@
 
     Template.wctl.events({
         'click #wrapper': function() {
-            updateStatus();
+            Meteor.call('changeStatus');
         }
+    });
+
+    Accounts.ui.config({
+        passwordSignupFields: "USERNAME_ONLY"
     });
 })();
