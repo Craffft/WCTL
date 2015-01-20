@@ -60,6 +60,12 @@ body {
     text-align: center;
     font-weight: medium;
     padding: 10px 0; }
+
+#wrapper .currentUser{
+    text-align: center;
+    margin-top: 10px;
+}
+
 #wrapper .content {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -72,6 +78,7 @@ body {
     -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px;
     box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px; }
+
 #wrapper .content .item {
     -moz-border-radius: 40px;
     -webkit-border-radius: 40px;

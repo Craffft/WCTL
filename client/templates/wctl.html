@@ -8,6 +8,9 @@
                     <div class="item green {{getClass 'green'}}"></div>
                 </div>
             </div>
+                <div class="currentUser">
+                    On WC:{{#unless isGreen}} {{currentUser}} {{else}} nobody{{/unless}}
+                </div>
         </div>
     {{/if}}
     {{> loginButtons}}

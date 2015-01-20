@@ -12,7 +12,18 @@ Status.insert({
 function getStatus() {
     return Status.findOne({}, {sort: {timestamp: -1}});
 }
+
+function insertStatus(status, user) {
+    Status.insert({
+        status: status,
+        timestamp: new Date(),
+        userId: user._id,
+        username: user.username
+    });
+}
+
 var timeout;
+var TIMEOUT_SECONDS = 20;
 
 Meteor.methods({
     changeStatus: function() {
@@ -33,21 +44,13 @@ Meteor.methods({
                 Meteor.clearTimeout(timeout);
             }
 
-            var userId = this.userId;
-            Status.insert({
-                status: nextStatus,
-                timestamp: new Date(),
-                userId: userId
-            });
+            var user = Meteor.user();
+            insertStatus(nextStatus, user);
 
             if(nextStatus === Status.YELLOW) {
                 timeout = Meteor.setTimeout(function() {
-                    Status.insert({
-                        status: Status.RED,
-                        timestamp: new Date(),
-                        userId: userId
-                    });
-                }, 20000);
+                    insertStatus(Status.RED, user);
+                }, 1000 * TIMEOUT_SECONDS);
             }
         } else {
             console.log('Not logged in!');
