@@ -1,0 +1,224 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/animation";
+@import "compass/css3/transition";
+
+html{
+}
+
+body{
+	background-color: #222;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-family: arial;
+	-ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.topbar{
+	width: 100%;
+	line-height: 50px;
+	font-size: 14px;
+	font-weight: 600;
+	border-bottom: 1px solid #333;
+	color: #888;
+	padding: 0 0 0 20px;
+	
+	a:link, a:visited, a:active{
+		text-transform: uppercase;
+	}
+
+	.checkbox{
+		border-left: 1px solid #444;
+		margin: 0 0 0 10px;
+		display: inline-block;
+	}
+}
+
+#wrapper{
+	
+	.forceGreen{
+		@include transition();
+		position: absolute;
+		top: 10px;
+		right: 20px;
+		font-size: 10px;
+		text-decoration: none;
+		color: #555;
+		background: #333;
+		text-transform: uppercase;
+		padding: 10px 20px;
+		font-weight: 700;
+		float: right;
+		margin: 0 10px 10px 0;
+		@include border-radius(5px);
+
+		&:hover{
+			background: #444;
+			color: #666;
+		}
+	}
+
+	#ampel{
+		cursor: pointer;
+	}
+
+	.currentUser{
+		@include border-radius(0 0 10px 10px);
+		display: block;
+		position: relative;
+		margin: 0 auto;
+		color: #444;
+		font-weight: 400;
+		text-align: center;
+		width: (57vh / 2);
+		font-size: 100%;
+		padding: 20px 0;
+		background: rgb(238,238,238);
+		background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(238,238,238,1) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(238,238,238,1)));
+		background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%);
+		background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%);
+		background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%);
+		background: linear-gradient(to bottom,  rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 );
+	}
+
+	.content{
+		@include border-radius(10px);
+		width: (60vh / 2);
+		margin: 20px auto 0 auto;
+		padding: 0 0;
+		background-color: #131313;
+		border: 20px solid rgba(255,255,255,0.3);
+		@include box-shadow(rgba(0,0,0,0.4) 0 0 10px);
+
+
+		.item{
+			@include border-radius(50%);
+			@include box-shadow(rgba(0,0,0,0.9) 0 1px 0);
+			@include box-shadow(rgba(255,255,255,0.2) 0 1px 0 inset);
+			@include box-shadow(0 8px 4px rgba(0,0,0,0.3) inset);
+			height: (50vh / 3);
+			width: (50vh / 3);
+			margin: 40px auto 40px auto;
+			position: relative;
+			opacity: 0.03;
+			border: 10% solid rgba(0,0,0,0.6);
+
+			&.red{
+				background-color: #ff3b0f;
+				background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(rgb(161, 20, 1)), to(rgb(255, 59, 15)));
+				background-image: -webkit-radial-gradient(50% 50%, rgb(255, 59, 15), rgb(161, 20, 1));
+				background-image: -moz-radial-gradient(50% 50%, rgb(255, 59, 15), rgb(161, 20, 1));
+				background-image: -o-radial-gradient(50% 50%, rgb(255, 59, 15), rgb(161, 20, 1));
+				background-image: -ms-radial-gradient(50% 50%, rgb(255, 59, 15), rgb(161, 20, 1));
+				background-image: radial-gradient(50% 50%, rgb(255, 59, 15), rgb(161, 20, 1));
+				background-image: url(ampel_grid.png);
+			}
+
+			&.yellow{
+				background-color: rgb(255,229,2);
+				background-image: -moz-radial-gradient(center, ellipse cover,  rgba(255,229,2,1) 0%, rgba(254,191,1,1) 100%);
+				background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,229,2,1)), color-stop(100%,rgba(254,191,1,1)));
+				background-image: -webkit-radial-gradient(center, ellipse cover,  rgba(255,229,2,1) 0%,rgba(254,191,1,1) 100%);
+				background-image: -o-radial-gradient(center, ellipse cover,  rgba(255,229,2,1) 0%,rgba(254,191,1,1) 100%);
+				background-image: -ms-radial-gradient(center, ellipse cover,  rgba(255,229,2,1) 0%,rgba(254,191,1,1) 100%);
+				background-image: radial-gradient(ellipse at center,  rgba(255,229,2,1) 0%,rgba(254,191,1,1) 100%);
+
+				background-image: url(ampel_grid.png);
+			}
+
+			&.green{
+				background-color: rgb(128,232,44);
+				background-image: -moz-radial-gradient(center, ellipse cover,  rgba(128,232,44,1) 0%, rgba(150,254,86,1) 50%, rgba(128,232,44,1) 100%);
+				background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(128,232,44,1)), color-stop(50%,rgba(150,254,86,1)), color-stop(100%,rgba(128,232,44,1)));
+				background-image: -webkit-radial-gradient(center, ellipse cover,  rgba(128,232,44,1) 0%,rgba(150,254,86,1) 50%,rgba(128,232,44,1) 100%);
+				background-image: -o-radial-gradient(center, ellipse cover,  rgba(128,232,44,1) 0%,rgba(150,254,86,1) 50%,rgba(128,232,44,1) 100%);
+				background-image: -ms-radial-gradient(center, ellipse cover,  rgba(128,232,44,1) 0%,rgba(150,254,86,1) 50%,rgba(128,232,44,1) 100%);
+				background-image: radial-gradient(ellipse at center,  rgba(128,232,44,1) 0%,rgba(150,254,86,1) 50%,rgba(128,232,44,1) 100%);
+				background-image: url(ampel_grid.png);
+			}
+		}
+
+		.active{
+			opacity: 1;
+			@include animation(flicker 1s linear infinite);
+			
+
+			&.red{
+				@include box-shadow(0 0 25px rgb(216, 47, 25), 0 8px 4px rgba(0,0,0,0.2) inset);
+
+			}
+
+			&.green{
+				@include box-shadow(0 0 25px rgb(150, 206, 16), 0 8px 4px rgba(0,0,0,0.2) inset);
+			}
+		}
+
+		.blink{
+			opacity: 1;
+  			@include animation(blink 2s cubic-bezier(0,1,0.9,1) infinite);
+		}
+	}
+
+}
+
+@include keyframes(flicker) { 
+  0% { 
+  	opacity: 0.97; 
+  }
+  10% { 
+  	opacity: 1; 
+  }
+  20% { 
+  	opacity: 0.93; 
+  }
+  30% { 
+  	opacity: 0.91; 
+  }
+  40% { 
+  	opacity: 0.94; 
+  }
+  50% { 
+  	opacity: 0.93; 
+  }
+  60% { 
+  	opacity: 0.98; 
+  }
+  70% { 
+  	opacity: 0.97; 
+  }
+  80% { 
+  	opacity: 0.96; 
+  }
+  90% { 
+  	opacity: 0.94; 
+  }
+  100% { 
+  	opacity: 0.93; 
+  }
+}
+
+@include keyframes(blink) { 
+  0% { 
+  	opacity: 0.4; 
+  	@include box-shadow(0 0 25px rgba(212, 125, 26,0.1),0 8px 4px rgba(0,0,0,0.2) inset);
+  }
+  50% { 
+  	opacity: 1; 
+  	@include box-shadow(0 0 45px rgba(212, 125, 26,1),0 8px 4px rgba(0,0,0,0.2) inset);
+  }
+  100% { 
+  	opacity: 0.4;
+  	@include box-shadow(0 0 25px rgba(212, 125, 26,0.1),0 8px 4px rgba(0,0,0,0.2) inset);
+  }
+}

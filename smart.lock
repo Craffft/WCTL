@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "fittext": {}
+    },
+    "packages": {
+      "fittext": {
+        "git": "https://github.com/dbubs/meteor-fittext.git",
+        "tag": "v1.2.0.2",
+        "commit": "025eb22b0b686ae8b6c03a8c8ef13e291084307b"
+      }
+    }
+  }
+}

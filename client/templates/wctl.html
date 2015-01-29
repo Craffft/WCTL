@@ -1,4 +1,6 @@
 <template name="wctl">
+    <div class="topbar">{{> loginButtons}} <!-- <input type="checkbox" class="notification" />Notifications --> </div>
+
     {{#if statusCount}}
         <div id="wrapper">
             <div class="content">
@@ -8,10 +10,14 @@
                     <div class="item green {{getClass 'green'}}"></div>
                 </div>
             </div>
+
+            {{#unless isGreen}}
                 <div class="currentUser">
-                    On WC:{{#unless isGreen}} {{currentUser}} {{else}} nobody{{/unless}}
-                </div>
+                    {{currentUser}}
+                 </div>
+                <a href="#" class="forceGreen">Force green</a>
+            {{/unless}}
         </div>
     {{/if}}
-    {{> loginButtons}}
+    
 </template>

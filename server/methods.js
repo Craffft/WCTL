@@ -55,5 +55,19 @@ Meteor.methods({
         } else {
             console.log('Not logged in!');
         }
+    },
+    forceGreen: function() {
+        console.log("force green");
+        if(Meteor.user()) {
+            var status = getStatus();
+            var nextStatus = '';
+
+            if(status.status === Status.RED) {
+                nextStatus = Status.GREEN;
+            } 
+
+            var user = Meteor.user();
+            insertStatus(nextStatus, user);
+        }   
     }
 });
